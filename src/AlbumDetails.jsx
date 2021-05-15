@@ -1,7 +1,12 @@
-// import React from 'react';
+import React from 'react';
 
-function AlbumDetails() {
-  return null;
+function AlbumDetails({ albumData }) {
+  return (
+    <div>
+      <p>{albumData.collectionName}</p>
+      <img alt={`album art for ${albumData.collectionName}`} src={albumData.artworkUrl100} />
+    </div>
+  );
 }
 
 export default AlbumDetails;

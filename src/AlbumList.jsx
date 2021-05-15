@@ -4,10 +4,9 @@ import AlbumDetails from './AlbumDetails';
 function AlbumList({ artistAlbumData }) {
   return (
     <div>
-      <p>
-        {artistAlbumData.resultCount}
-      </p>
-      <AlbumDetails albumsData={artistAlbumData} />
+      {artistAlbumData.results.map((album) => (
+        <AlbumDetails key={album.collectionId} albumData={album} />
+      ))}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import AlbumList from './AlbumList';
 
 function Homepage({ artistAlbumData }) {
   return (
+    // add Navbar
     <AlbumList artistAlbumData={artistAlbumData} />
   );
 }
