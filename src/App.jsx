@@ -4,21 +4,21 @@ import Homepage from './Homepage';
 import Api from './Api';
 
 function App() {
+  const DEFAULT_ARTIST = 'imaginedragons';
   const [isLoading, setIsLoading] = useState(true);
+  const [currArtist, setCurrArtist] = useState(DEFAULT_ARTIST);
   const [artistAlbumData, setArtistAlbumData] = useState();
 
-  const HARD_CODED_ARTIST = 'imaginedragons';
-
   // call getAlbums from the Api, set state for albumsData and isLoading
-  async function getAlbumData() {
-    const albumsData = await Api.getAlbums(HARD_CODED_ARTIST);
+  async function getAlbumData(artist) {
+    const albumsData = await Api.getAlbums(artist);
     setArtistAlbumData(albumsData);
     setIsLoading(false);
   }
 
   useEffect(() => {
-    getAlbumData();
-  }, []);
+    getAlbumData(currArtist);
+  }, [currArtist]);
 
   // display loading screen until Api call is fulfilled or rejected
   if (isLoading) {
@@ -30,7 +30,7 @@ function App() {
   }
 
   return (
-    <Homepage artistAlbumData={artistAlbumData} />
+    <Homepage artistAlbumData={artistAlbumData} setCurrArtist={setCurrArtist} />
   );
 }
 
