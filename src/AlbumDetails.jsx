@@ -1,36 +1,36 @@
 import React from 'react';
+import './AlbumDetails.css';
 
 function AlbumDetails({ albumData }) {
+  // date comes in format "2012-01-01T08:00:00Z" (year-month-day-Time)
+  // convert to month-day-year
+  function formatDate(dateString) {
+    // split on "T or , or space"
+    const regex = /(T|,| )+/;
+    const formattedDateArr = dateString.split(regex);
+    const [year, month, day] = formattedDateArr[0].split('-');
+    return `${month}-${day}-${year}`;
+  }
   return (
-    // <div className="card border-dark mb-3" style={{ maxWidth: '20rem' }}>
-    //   <div className="card-header">{albumData.collectionName}</div>
-    //   <div className="card-body">
-    //     <img alt={`album art for ${albumData.collectionName}`} src={albumData.artworkUrl100} />
-    //   </div>
-    // </div>
-    <div>
+    <div className="album-section">
       <div className="card mb-3">
-        <h3 className="card-header">{albumData.collectionName}</h3>
+        <a href={albumData.collectionViewUrl} className="title-link">
+          <h3 className="card-header">{albumData.collectionName}</h3>
+        </a>
         <div className="card-body">
-          <h5 className="card-title">Special title treatment</h5>
-          <h6 className="card-subtitle text-muted">Support card subtitle</h6>
+          <h5 className="card-title">{albumData.artistName}</h5>
         </div>
         <div className="card-body">
           <img alt={`album art for ${albumData.collectionName}`} src={albumData.artworkUrl100} />
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Cras justo odio</li>
-          <li className="list-group-item">Dapibus ac facilisis in</li>
+          <li className="list-group-item">{`Genre: ${albumData.primaryGenreName}`}</li>
           <li className="list-group-item">
-            Check out the album:
-            {' '}
-            <a href={albumData.collectionViewUrl}>
-              {albumData.collectionName}
-            </a>
+            {`Release Date: ${formatDate(albumData.releaseDate)}`}
           </li>
         </ul>
         <div className="card-footer text-muted">
-          2 days ago
+          {albumData.copyright}
         </div>
       </div>
     </div>

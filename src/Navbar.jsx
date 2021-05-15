@@ -1,10 +1,11 @@
 import React from 'react';
+import './Navbar.css';
 
 // style={{ marginLeft: '40%' }}
 
 function Navbar({ artistName, artistLink }) {
   return (
-    <div>
+    <div className="main-navbar-div">
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <h4>
