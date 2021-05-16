@@ -11,6 +11,7 @@ function AlbumDetails({ albumData }) {
     const [year, month, day] = formattedDateArr[0].split('-');
     return `${month}-${day}-${year}`;
   }
+
   return (
     <div className="album-section">
       <div className="card mb-3">

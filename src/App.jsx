@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Homepage from './Homepage';
 import Api from './Api';
+import Loading from './Loading';
 
 function App() {
   const DEFAULT_ARTIST = 'imaginedragons';
@@ -12,7 +13,10 @@ function App() {
 
   // call getAlbums from the Api, set state for albumsData and isLoading
   async function getAlbumData(artist) {
+    setIsLoading(true);
     const albumsData = await Api.getAlbums(artist);
+    // if the results arr is empty the Api either couldn't find albums for the artist
+    // or it was a bad request so show an error, otherwise change the state accordingly
     if (albumsData.results.length !== 0) {
       setArtistAlbumData(albumsData);
       setError(false);
@@ -29,9 +33,7 @@ function App() {
   // display loading screen until Api call is fulfilled or rejected
   if (isLoading) {
     return (
-      <div>
-        <p> loading... </p>
-      </div>
+      <Loading />
     );
   }
 

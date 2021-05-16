@@ -40,13 +40,3 @@
   padding: 1rem 80px;
   font-size: 1.2rem;
 }
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
