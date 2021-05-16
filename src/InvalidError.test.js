@@ -4,8 +4,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import InvalidError from './InvalidError';
 
-test('renders error', () => {
-  render(<InvalidError />);
-  const errorElement = screen.getByText('Error:', { exact: false });
-  expect(errorElement).toBeInTheDocument();
+describe('InvalidError componenet functions properly', () => {
+  test('renders error', () => {
+    render(<InvalidError />);
+    const errorElement = screen.getByText('Error:', { exact: false });
+    expect(errorElement).toBeInTheDocument();
+  });
 });

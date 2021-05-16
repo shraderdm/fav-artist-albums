@@ -4,8 +4,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Loading from './Loading';
 
-test('renders loading component', () => {
-  render(<Loading />);
-  const loadingElement = screen.getByText('loading', { exact: false });
-  expect(loadingElement).toBeInTheDocument();
+describe('Loading component functions properly', () => {
+  test('renders loading component', () => {
+    render(<Loading />);
+    const loadingElement = screen.getByText('loading', { exact: false });
+    expect(loadingElement).toBeInTheDocument();
+  });
 });
