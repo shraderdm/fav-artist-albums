@@ -6,13 +6,19 @@ import Api from './Api';
 function App() {
   const DEFAULT_ARTIST = 'imaginedragons';
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [currArtist, setCurrArtist] = useState(DEFAULT_ARTIST);
   const [artistAlbumData, setArtistAlbumData] = useState();
 
   // call getAlbums from the Api, set state for albumsData and isLoading
   async function getAlbumData(artist) {
     const albumsData = await Api.getAlbums(artist);
-    setArtistAlbumData(albumsData);
+    if (albumsData.results.length !== 0) {
+      setArtistAlbumData(albumsData);
+      setError(false);
+    } else {
+      setError(true);
+    }
     setIsLoading(false);
   }
 
@@ -30,7 +36,7 @@ function App() {
   }
 
   return (
-    <Homepage artistAlbumData={artistAlbumData} setCurrArtist={setCurrArtist} />
+    <Homepage artistAlbumData={artistAlbumData} setCurrArtist={setCurrArtist} error={error} />
   );
 }
 

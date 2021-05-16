@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
 
-// style={{ marginLeft: '40%' }}
+function Navbar({ artistName, artistLink, setCurrArtist }) {
+  const [inputValue, setInputValue] = useState('');
 
-function Navbar({ artistName, artistLink }) {
+  // update input state as user writes in form
+  function handleChange(e) {
+    const { value } = e.target;
+    setInputValue(value);
+    // eslint-disable-next-line no-console
+    console.log(value);
+  }
+
+  // set the currArtist to what was submitted in the input then clear the input
+  function handleSubmit(e) {
+    e.preventDefault();
+    const { value } = document.getElementById('artist-input');
+    setCurrArtist(value);
+    e.target.value = '';
+  }
+
   return (
     <div className="main-navbar-div">
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -11,8 +27,9 @@ function Navbar({ artistName, artistLink }) {
           <h4>
             <a className="nav-link active" href={artistLink}>{artistName}</a>
           </h4>
-          <div>
-            <button type="button" className="btn btn-success">Change Artist</button>
+          <div className="d-flex">
+            <input className="me-sm-2 nav-form" id="artist-input" name="name" value={inputValue} onChange={handleChange} type="text" placeholder="Artist Name" />
+            <button type="button" onClick={handleSubmit} className="btn btn-success nav-form">Change Artist</button>
           </div>
         </div>
       </nav>
